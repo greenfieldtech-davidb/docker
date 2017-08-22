@@ -5,6 +5,7 @@ Requires=docker.service
 
 [Service]
 Type=simple
+TimeoutStartSec=600
 ExecStartPre=-/usr/bin/docker rm jenkins
 ExecStartPre=-/usr/bin/docker pull davidbrs64/jenkins
 ExecStartPre=/bin/mkdir -p /var/local/jenkins 
