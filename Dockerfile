@@ -23,7 +23,7 @@ ENV JENKINS_SLAVE_AGENT_PORT ${agent_port}
 RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 #    
-#RUN groupadd -g 1002 host-docker && usermod -aG host-docker ${user}
+RUN groupadd -g 1002 host-docker && usermod -aG host-docker ${user}
 
 # Jenkins home directory is a volume, so configuration and build history 
 # can be persisted and survive image upgrades
@@ -72,7 +72,7 @@ EXPOSE ${agent_port}
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
-#USER ${user}
+USER ${user}
 
 COPY jenkins-support /usr/local/bin/jenkins-support
 COPY jenkins.sh /usr/local/bin/jenkins.sh
